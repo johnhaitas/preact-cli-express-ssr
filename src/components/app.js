@@ -1,6 +1,12 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 
+import {
+	HOME_ROUTE_PATH,
+	MY_PROFILE_ROUTE_PATH,
+	USER_PROFILE_ROUTE_PATH
+} from '../config/constants';
+
 import Header from './header';
 
 // Code-splitting is automated for routes
@@ -17,14 +23,14 @@ export default class App extends Component {
 		this.currentUrl = e.url;
 	};
 
-	render() {
+	render({ url }) {
 		return (
 			<div id="app">
 				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
+				<Router url={url} onChange={this.handleRoute}>
+					<Home path={HOME_ROUTE_PATH} />
+					<Profile path={MY_PROFILE_ROUTE_PATH} user="me" />
+					<Profile path={USER_PROFILE_ROUTE_PATH} />
 				</Router>
 			</div>
 		);
