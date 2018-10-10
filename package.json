@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
-    "build": "preact build --config preact.config.js",
+    "build": "preact build --config preact.config.js --template src/template.html",
     "serve": "npm run build && node ./server.js",
     "dev": "preact watch",
     "lint": "eslint src",
@@ -21,6 +21,7 @@
     "compression-webpack-plugin": "^1.1.11",
     "eslint": "^4.9.0",
     "eslint-config-synacor": "^2.0.2",
+    "history": "^4.7.2",
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",

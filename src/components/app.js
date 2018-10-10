@@ -23,11 +23,11 @@ export default class App extends Component {
 		this.currentUrl = e.url;
 	};
 
-	render({ url }) {
+	render({ history }) {
 		return (
 			<div id="app">
 				<Header />
-				<Router url={url} onChange={this.handleRoute}>
+				<Router history={history} onChange={this.handleRoute}>
 					<Home path={HOME_ROUTE_PATH} />
 					<Profile path={MY_PROFILE_ROUTE_PATH} user="me" />
 					<Profile path={USER_PROFILE_ROUTE_PATH} />
