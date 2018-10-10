@@ -13,4 +13,7 @@ const addHandlers = (app, template) => {
 	routesPriority.forEach(route => app.get(route, handler));
 };
 
-export { App as default, addHandlers };
+export { addHandlers };
+
+// uncomment exporting App as default
+// export default App;

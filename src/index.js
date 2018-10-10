@@ -11,8 +11,6 @@ const getProps = () => {
 	},
 	init = () => {
 		const props = getProps();
-		appRoot = render(h(App, props), document.body, appRoot || document.body.firstChild);
+		appRoot = render(h(App, props), document.body, appRoot || document.body.firstElementChild);
 	};
 init();
-
-export default App;

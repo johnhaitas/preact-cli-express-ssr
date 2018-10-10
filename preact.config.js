@@ -11,6 +11,14 @@ import asyncPlugin from 'preact-cli-plugin-fast-async';
  **/
 export default function (config, env, helpers) {
 
+	if (env.production !== true) {
+		helpers.getPluginsByName(config, 'UglifyJsPlugin')
+			.map(e => e.index)
+			.forEach(index => {
+				config.plugins.splice(index, 1);
+			});
+	}
+	
 	if (env.ssr) {
 		config.entry['ssr-bundle'] = env.source('./server/index.js');
 		config.output.filename = '[name].js';

@@ -2,7 +2,7 @@ import { h } from 'preact';
 import render from 'preact-render-to-string';
 
 const headRegExp = /(<head>)/i,
-	bodyRegExp = /(<body>)/i;
+	bodyRegExp = /(<body[^>]*>).*?(?=<script)/i;
 
 export default (template, rootComponentClass) => props => {
 	const body = render(h(rootComponentClass, props)),
