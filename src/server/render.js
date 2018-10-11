@@ -1,15 +1,19 @@
 import { h } from 'preact';
 import render from 'preact-render-to-string';
 
-const headRegExp = /(<head>)/i,
-	bodyRegExp = /(<body[^>]*>).*?(?=<script)/i;
+const headTag = '<head>';
 
-export default (template, rootComponentClass) => props => {
-	const body = render(h(rootComponentClass, props)),
-		head = '', // you could use something like Helmet here
-		renderedTemplate = template
-			.replace(headRegExp, `$1${head}`)
-			.replace(bodyRegExp, `$1${body}`);
+export default (template, rootComponentClass, placeholderComponentClass) => {
+	const appPlaceholder = placeholderComponentClass
+		? render(h(placeholderComponentClass))
+		: /(<div id="app"[^>]*>).*?(?=<script)/i;
+	return props => {
+		const app = render(h(rootComponentClass, props)),
+			head = '', // you could use something like Helmet here
+			renderedTemplate = template
+				.replace(headTag, headTag + head)
+				.replace(appPlaceholder, app);
 
-	return renderedTemplate;
+		return renderedTemplate;
+	};
 };
