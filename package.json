@@ -12,7 +12,10 @@
     "test": "jest"
   },
   "eslintConfig": {
-    "extends": "eslint-config-synacor"
+    "extends": "eslint-config-synacor",
+    "globals": {
+        "PRERENDER": true
+    }
   },
   "eslintIgnore": [
     "build/*"
