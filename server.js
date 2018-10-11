@@ -1,15 +1,12 @@
 const express = require('express'),
 	compression = require('compression'),
 	{ readFileSync } = require('fs'),
-	{ addHandlers } = require('./build/ssr-build/ssr-bundle');
+	{ addHandlers } = require('./build/ssr-build/ssr-bundle'),
+	template = readFileSync(__dirname + '/build/index.html', 'utf8');
 
-const port = process.env.PORT || 8080,
-	baseState = {};
-
-const template = readFileSync(__dirname + '/build/index.html', 'utf8');
+const port = process.env.PORT || 8080;
 	
-const respondStatusOK = (req, res) => res.status(200).send('ok'),
-	notFoundHandler = (req, res) => {
+const notFoundHandler = (req, res) => {
 		res.setHeader('Content-Type', 'text/plain');
 		res.status(404).send('Not Found');
 	},
@@ -23,8 +20,6 @@ const respondStatusOK = (req, res) => res.status(200).send('ok'),
 const app = express();
 app.disable('x-powered-by');
 
-/* Health Check */
-app.get('/_health/shallow', respondStatusOK);
 app.use(requestLogger);
 
 app.get('/ssr-build/*', notFoundHandler);
@@ -39,7 +34,7 @@ app.use(express.static(__dirname + '/build', {
 	  }
 }));
 
-addHandlers(app, template, baseState);
+addHandlers(app, template);
 
 app.get('*', notFoundHandler);
 
