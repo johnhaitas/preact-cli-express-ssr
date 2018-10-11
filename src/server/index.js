@@ -15,5 +15,5 @@ const addHandlers = (app, template) => {
 
 export { addHandlers };
 
-// uncomment exporting App as default
+// for template prerender uncomment exporting App as default
 // export default App;

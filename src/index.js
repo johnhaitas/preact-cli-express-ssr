@@ -1,4 +1,3 @@
-import { h, render } from 'preact';
 import createHistory from 'history/createBrowserHistory';
 
 import './style';
