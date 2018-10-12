@@ -3,10 +3,22 @@
   "name": "preact-cli-express-ssr",
   "version": "0.0.0",
   "license": "MIT",
+  "watch": {
+    "dev-serve": {
+      "patterns": [
+        "src",
+        "server.js"
+      ],
+      "delay": 1000,
+      "quiet": true
+    }
+  },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build",
-    "serve": "npm run build && node server",
+    "serve": "node server",
+    "dev-serve": "preact build && node --inspect server",
+    "watch-dev-serve": "npm-watch dev-serve",
     "dev": "preact watch",
     "lint": "eslint src",
     "test": "jest"
@@ -14,7 +26,7 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "globals": {
-        "PRERENDER": true
+      "PRERENDER": true
     }
   },
   "eslintIgnore": [
@@ -28,6 +40,7 @@
     "identity-obj-proxy": "^3.0.0",
     "if-env": "^1.0.0",
     "jest": "^21.2.1",
+    "npm-watch": "^0.4.0",
     "preact-cli": "^2.2.1",
     "preact-cli-plugin-fast-async": "^1.0.1",
     "preact-render-spy": "^1.2.1"

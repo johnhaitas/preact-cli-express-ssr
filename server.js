@@ -5,7 +5,7 @@ const express = require('express'),
 	template = readFileSync(__dirname + '/build/index.html', 'utf8');
 
 const port = process.env.PORT || 8080;
-	
+
 const notFoundHandler = (req, res) => {
 		res.setHeader('Content-Type', 'text/plain');
 		res.status(404).send('Not Found');
@@ -39,5 +39,5 @@ addHandlers(app, template);
 app.get('*', notFoundHandler);
 
 app.listen(port, () => {
-	console.log(`Server with is running on port http://localhost:${port}`);  // eslint-disable-line no-console
+	console.log(`Server is available at http://localhost:${port}`);  // eslint-disable-line no-console
 });

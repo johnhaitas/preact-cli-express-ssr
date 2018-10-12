@@ -1,0 +1,106 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "label": "npm: build",
+            "script": "build",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "npm",
+            "label": "npm: test",
+            "script": "test",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "npm",
+            "label": "npm: dev",
+            "script": "dev",
+            "isBackground": true,
+            "problemMatcher": [
+                {
+                    "owner": "javascript",
+                    "pattern": [
+                        {
+                            "regexp": "^✖ (ERROR|WARNING) ([^\\s].*)$",
+                            "severity": 1,
+                            "file": 2
+                        },
+                        {
+                            "regexp": "^([\\s.]* \\((\\d+):(\\d+)\\)+)",
+                            "message": 1,
+                            "line": 2,
+                            "column": 3
+                        },
+                        {
+                            "regexp": "^ @ ([^\\s].*) ((\\d+):((\\d+)(\\-(\\d+))?) ?)*$",
+                            "file": 1,
+                            "line": 3,
+                            "column": 5,
+                            "endColumn": 7,
+                            "loop": true
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": "[.\\[\\].]*Compiled successfully!$",
+                        "endsPattern": "^On Your Network:  https?://(?:\\d{1,3}\\.){3}\\d{1,3}:\\d+$"
+                    }
+                }
+            ]
+        },
+        {
+            "type": "npm",
+            "label": "npm: watch-dev-serve",
+            "script": "watch-dev-serve",
+            "isBackground": true,
+            "problemMatcher": [
+                {
+                    "owner": "javascript",
+                    "fileLocation": ["relative", "${workspaceFolder}"],
+                    "pattern": [
+                        {
+                            "regexp": "^✖ (ERROR|WARNING) ([^\\s].*)$",
+                            "severity": 1,
+                            "file": 2
+                        },
+                        {
+                            "regexp": "^([\\s.]* \\((\\d+):(\\d+)\\)+)",
+                            "message": 1,
+                            "line": 2,
+                            "column": 3
+                        },
+                        {
+                            "regexp": "^ \\@ ([^\\s].*) ((\\d+):((\\d+)(\\-(\\d+))?) ?)*$",
+                            "file": 1,
+                            "line": 3,
+                            "column": 5,
+                            "endColumn": 7,
+                            "loop": true
+                        }
+                    ],
+                    "background": {
+                        "activeOnStart": true,
+                        "beginsPattern": "restarting due to changes",
+                        "endsPattern": "Debugger listening on"
+                    }
+                }
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
+        }
+    ]
+}
