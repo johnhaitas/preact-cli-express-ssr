@@ -7,7 +7,7 @@
         {
             "type": "node",
             "request": "attach",
-            "name": "Attach Watch Dev Build",
+            "name": "Server",
             "preLaunchTask": "npm: watch-dev-serve",
             "restart": true,
             "internalConsoleOptions": "openOnSessionStart",
@@ -25,7 +25,7 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Chrome",
+            "name": "Client",
             "url": "http://localhost:8080/profile",
             "webRoot": "${workspaceFolder}/build",
             "sourceMapPathOverrides": {
@@ -51,5 +51,5 @@
             },
             "showAsyncStacks": true,
         }
-    ] 
+    ]
 }
