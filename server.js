@@ -38,6 +38,16 @@ addHandlers(app, template);
 
 app.get('*', notFoundHandler);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log(`Server is available at http://localhost:${port}`);  // eslint-disable-line no-console
 });
+
+const signals = ['SIGINT', 'SIGTERM', 'SIGUSR1', 'SIGUSR2'],
+	generateSigHandler = sigName => () => {
+		console.info(`${sigName} signal received.`);  // eslint-disable-line no-console
+		console.log('Closing http server.');  // eslint-disable-line no-console
+		server.close(() => {
+			console.log('Http server closed.');  // eslint-disable-line no-console
+		});
+	};
+signals.forEach(sigName => process.once(sigName, generateSigHandler(sigName)));
