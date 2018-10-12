@@ -11,6 +11,10 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
             }
         },
         {
@@ -21,6 +25,10 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
             }
         },
         {
@@ -31,9 +39,10 @@
             "problemMatcher": [
                 {
                     "owner": "javascript",
+                    "fileLocation": ["relative", "${workspaceFolder}"],
                     "pattern": [
                         {
-                            "regexp": "^✖ (ERROR|WARNING) ([^\\s].*)$",
+                            "regexp": "^✖ (ERROR|WARNING)\\s+(.*)$",
                             "severity": 1,
                             "file": 2
                         },
@@ -54,11 +63,15 @@
                     ],
                     "background": {
                         "activeOnStart": true,
-                        "beginsPattern": "[.\\[\\].]*Compiled successfully!$",
+                        "beginsPattern": "^Build ",
                         "endsPattern": "^On Your Network:  https?://(?:\\d{1,3}\\.){3}\\d{1,3}:\\d+$"
                     }
                 }
-            ]
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            }
         },
         {
             "type": "npm",
@@ -71,7 +84,10 @@
                     "fileLocation": ["relative", "${workspaceFolder}"],
                     "pattern": [
                         {
-                            "regexp": "^✖ (ERROR|WARNING) ([^\\s].*)$",
+                            "regexp": "\\[nodemon\\] app crashed \\- waiting for file changes before starting\\.\\.\\."
+                        },
+                        {
+                            "regexp": "^✖ (ERROR|WARNING)\\s+(.*)$",
                             "severity": 1,
                             "file": 2
                         },
@@ -97,6 +113,7 @@
                     }
                 }
             ],
+            "group": "build",
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated"

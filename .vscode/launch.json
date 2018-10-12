@@ -13,7 +13,7 @@
             "internalConsoleOptions": "openOnSessionStart",
             "port": 9229,
             "outFiles": [
-                "${workspaceFolder}/build/**/*"
+                "${workspaceFolder}/build/**/*.js"
             ],
             "sourceMaps": true,
             "sourceMapPathOverrides": {
